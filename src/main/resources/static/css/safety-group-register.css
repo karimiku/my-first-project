@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f9f9f9; 
+}
+
+
+/* 安全確認リマインダー登録フォームのスタイル */
+.safety-group-form-container{
+	background-color: #ffffff;
+	border-radius: 8px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	padding: 30px;
+	margin-bottom: 20px;
+	max-width: 600px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+
+.safety-group-form-container h2 {
+    margin-bottom: 10px;
+    color: black;
+    text-align: center;
+}
+
+.error-message {
+    color: red;
+    font-size: 1em;
+    margin-bottom: 10px;
+    text-align: center; /* メッセージを中央に配置 */
+    background-color: #f8d7da;
+    padding: 10px;
+    border: 1px solid #f5c2c7;
+    border-radius: 5px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.input-group textarea {
+    resize: none;
+    height: 100px;
+}
+
+.safety-group-form-container button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    display: block; /* ブロック要素にして中央揃えを適用可能に */
+    margin: 20px auto; /* 上下20px、左右自動で中央揃え */
+	text-align: right;
+}
+/* ボタン風リンク */
+.button-link {
+    display: inline-block; /* ブロック要素にしてクリック可能範囲を広げる */
+    background-color: #4CAF50; /* ボタンの背景色 */
+    color: white; /* ボタンの文字色 */
+    text-align: center; /* 文字を中央揃え */
+    text-decoration: none; /* 下線を削除 */
+    padding: 10px 20px; /* 内側の余白 */
+    border-radius: 5px; /* 角を丸くする */
+    cursor: pointer; /* ポインタに変更 */
+    font-size: 1.2em; /* 文字サイズ */
+}
+
+/* 右寄せ用の親コンテナ */
+.button-right-container {
+    text-align: right; /* 子要素を右寄せ */
+}
+
+/* ホバー時のスタイル */
+.button-link:hover {
+    background-color: #45a049; /* 背景色を少し濃くする */
+}
+
+
+.safety-group-form-container button:hover {
+    background-color: #45a049;
+}
+

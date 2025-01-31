@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホーム - Goal Tracker</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <script th:src="@{/javascript/menu.js}" defer></script>
+</head>
+<body>
+    <div th:replace="common/header :: body"></div>
+
+    <main>
+        <!-- 今日のタスク表示セクション -->
+        <section>
+            <h2>今日のタスク</h2>
+            <ul class="menu-page">
+                <li class="menu-page" th:each="task : ${task}">
+                    <label class="task-label" th:text="${task.name}"></label>
+                    <div class="task-details-container">
+                        <input 
+						type="checkbox" 
+						th:id="'task-' + ${task.id}"
+						th:attr="data-task-id=${task.id}" 
+						th:checked="${task.completed}" />
+                        <label th:for="'task-' + ${task.id}">完了</label>
+                        <div class="task-details">
+                            <p>期限: <span th:text="${task.dueDateTime}"></span></p>
+                            <p>詳細: <span th:text="${task.details}"></span></p>
+                        </div>
+						<div class="task-actions">
+							<a th:href="@{/task/edit/{id}(id=${task.id})}" class="edit-button">✏️ 編集</a>
+							<form th:action="@{/delete-task}" method="post" style="display:inline;">
+								<input type="hidden" name="id" th:value="${task.id}" />
+								<button type="submit" class="delete-button">️🗑️削除</button>
+							</form>
+						</div>
+                    </div>
+                </li>
+            </ul>
+            <a th:href="@{/task-register}" class="button">タスクを登録する</a>
+        </section>
+		
+		<section>
+		    <h2>安全確認リマインダー</h2>
+		    <ul class="group-list">
+		        <li th:each="group : ${reminderGroup}" class="group-item">
+		            <!-- グループ名（クリックでリマインダーリスト表示切替） -->
+		            <div class="group-name" th:id="'group-' + ${group.id}">
+		                <span th:text="${group.name}" class="group-label"></span>
+		            </div>
+
+		            <!-- リマインダーリスト（初期状態は非表示） -->
+		            <ul class="reminder-list hidden" th:each="reminder : ${group.reminders}">
+		                <li class="reminder-item">
+		                    <input 
+		                        type="checkbox" 
+		                        th:id="'reminder-' + ${reminder.id}" 
+		                        th:attr="data-reminder-id=${reminder.id}" 
+		                        th:checked="${reminder.completed}" />
+		                    <label th:for="'reminder-' + ${reminder.id}" th:text="${reminder.reminderName}"></label>
+							<div class="reminder-actions">
+								<a th:href="@{/reminder/edit/{id}(id=${reminder.id})}" class="edit-button">✏️ 編集</a>
+								<form th:action="@{/delete-reminder}" method="post" style="display:inline;">
+									<input type="hidden" name="id" th:value="${reminder.id}" />
+									<button type="submit" class="delete-button">️🗑️削除</button>
+								</form>
+							</div>
+		                </li>
+		            </ul>
+		        </li>
+		    </ul>
+		    <a th:href="@{/safety-group-register}" class="button">リマインダーを登録する</a>
+		</section>
+    </main>
+</body>
+</html>

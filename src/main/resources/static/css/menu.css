@@ -1,0 +1,315 @@
+@charset "UTF-8";
+
+/* 全体の背景とフォント設定 */
+body {
+    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* 見出しのスタイル */
+h2 {
+    color: black;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.8em;
+}
+
+/* メインセクション */
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	margin-top: 20px;
+}
+
+/* タスクリストのスタイル */
+.menu-page ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-page li.completed{
+	background-color: #d4edda; /* 完了したタスクの背景色 */
+}
+
+
+.menu-page li {
+    background-color: #f0f8ff;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
+	position: relative; /* 要素内のクリック可能エリアを調整 */
+	text-align: left; /* 親要素が中央寄せをしないようにする */
+}
+
+.menu-page li:hover {
+    background-color: #e0f7fa;
+    transform: none;
+}
+
+/* チェック済みタスクのホバー時 */ 
+.menu-page li.completed:hover {
+    background-color: #c3e6cb; /* チェック済み時の明るい背景色 (必要に応じて変更) */
+}
+
+
+/* タスクラベル */
+.task-label {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #4CAF50;
+    transition: color 0.3s;
+}
+
+.task-label:hover {
+    color: #45a049;
+}
+
+/* タスク詳細のアニメーション */
+.task-details-container {
+	display: block;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    padding: 0 10px;
+    background-color: #f9f9f9;
+    border-left: 3px solid #4CAF50;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.task-details-container.active {
+    max-height: 200px; /* 必要に応じて調整 */
+    opacity: 1;
+}
+
+/* チェックボックスカスタマイズ */
+input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #4CAF50;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #4CAF50;
+}
+
+input[type="checkbox"]:checked::before {
+    content: "✔";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 0.8em;
+}
+
+/* タスク詳細テキスト */
+.task-details p {
+    font-size: 0.9em;
+    color: #333;
+}
+
+/* タスク登録ボタン */
+.button {
+    display: block;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    margin: 20px auto;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+/* セクション間の間隔 */
+section {
+    margin-bottom: 30px;
+}
+
+/* フッター */
+footer {
+    text-align: center;
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 20px;
+}
+
+/* 安全確認リマインダーのリストのスタイル */
+.group-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* グループアイテム（リマインダーグループ） → タスクと同じデザイン */
+.group-item {
+    background-color: #f0f8ff;
+    margin: 10px 0;
+    padding: 15px; /* タスクと統一 */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
+    position: relative;
+}
+
+/* ホバー時のデザイン（タスクと統一） */
+.group-item:hover {
+    background-color: #e0f7fa;
+    transform: none;
+}
+
+/* チェック済みのグループ（背景色を変更） */
+.group-item.completed {
+    background-color: #d4edda; /* タスクと統一 */
+}
+
+/* グループ名のデザイン */
+.group-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    display: block;
+    color: #4CAF50;
+    transition: color 0.3s;
+}
+
+/* リマインダーリスト（初期状態は非表示） */
+.reminder-list {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    padding: 0 10px;
+    background-color: #f9f9f9;
+    border-left: 3px solid #4CAF50;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: block;
+}
+
+.reminder-list.active {
+    max-height: 200px; /* 適宜調整 */
+    opacity: 1;
+}
+
+/* リマインダーアイテム（タスク詳細と統一） */
+.reminder-item {
+    font-size: 0.9em;
+    color: #333;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: block;
+}
+
+.delete-button:hover {
+    background-color: #cc0000; /* ホバー時に少し濃い赤に */
+    transform: scale(1.05); /* 少し大きくしてアクション感を出す */
+}
+
+.delete-button:active {
+    transform: scale(0.95); /* クリック時に少し縮む */
+}
+
+.task-actions {
+    display: flex !important;
+    justify-content: flex-end;
+    gap: 10px; /* タスク用 */
+    margin-top: 5px;
+    align-items: center;
+	margin-bottom: 5px;
+}
+
+.reminder-actions {
+    display: flex !important;
+    justify-content: flex-end;
+    gap: 10px; /* リマインダー用（今まで通り） */
+    margin-top: 5px;
+    align-items: center;
+}
+.edit-button {
+    background-color: #4CAF50; /* 緑色 */
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.edit-button:hover {
+    background-color: #388E3C;
+    transform: scale(1.05);
+}
+
+.save-button {
+    background-color: #2196F3; /* 青色 */
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    display: none; /* 初期状態は非表示 */
+}
+
+.save-button:hover {
+    background-color: #1976D2;
+    transform: scale(1.05);
+}
+
+.delete-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+	margin-left: 0;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+    transform: scale(1.05);
+}
+
+/* スライドインのアニメーション */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

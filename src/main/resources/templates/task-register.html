@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Googleカレンダー風タスクカレンダー</title>
+    <link rel="stylesheet" href="/css/task-register.css"> <!-- カレンダー用CSS -->
+    <link rel="stylesheet" href="/css/common.css"> <!-- 共通CSS -->
+</head>
+<body>
+    <div th:replace="common/header :: body"></div>
+    <main>
+		<!-- タスク登録フォーム -->
+		      <div class="task-form-container">
+		          <h2>タスクを追加</h2>
+		          <form th:action="@{/task-register}" method="POST" th:object="${TaskRegisterForm}">
+		              <div class="input-group">
+		                  <label for="name">タスク名:</label>
+		                  <input type="text" id="name" th:field="*{name}" required>
+		              </div>
+		              <div class="input-group">
+		                  <label for="dueDateTime">締切日時:</label>
+		                  <input type="datetime-local" id="dueDateTime" th:field="*{dueDateTime}" required>
+		              </div>
+		              <div class="input-group">
+		                  <label for="details">詳細:</label>
+		                  <textarea id="details" th:field="*{details}"></textarea>
+		              </div>
+		              <button type="submit">登録</button>
+		          </form>
+		      </div>
+		
+        <div class="calendar-container">
+            <!-- ヘッダー部分 -->
+            <div class="calendar-header">
+                <button id="prev-month">&lt;</button>
+                <h2 id="current-month">2025年1月</h2>
+                <button id="next-month">&gt;</button>
+            </div>
+
+            <!-- カレンダーグリッド -->
+            <div class="calendar-grid">
+                <!-- 曜日表示 -->
+                <div class="day-name">日</div>
+                <div class="day-name">月</div>
+                <div class="day-name">火</div>
+                <div class="day-name">水</div>
+                <div class="day-name">木</div>
+                <div class="day-name">金</div>
+                <div class="day-name">土</div>
+
+                <!-- 日付 -->
+                <div class="calendar-day" th:each="day : ${calendarDays}" data-date="${day.date}">
+                    <div class="date" th:text="${day.date}"></div>
+                    <ul class="task-list">
+                        <li th:each="task : ${day.tasks}">
+                            <span class="task-label" th:text="${task.name}"></span>
+							<!-- 隠されたチェックボックスと期限と詳細-->
+							<div class="task-details hidden">
+							<label>完了</label>							
+							<input type="checkbox" class="task-checkbox" th:checked="${task.completed}" />
+							<p>期限: <span th:text="${task.dueDateTime}"></span></p>
+							<span class="task-detail" th:text="${task.details}"></span>
+							
+							<!-- 削除ボタン -->
+							<form th:action="@{/delete-task}" method="post" style="display:inline;">
+								<input type="hidden" name="id" th:value="${task.id}" />
+								<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+						        <button type="submit" class="delete-button">削除</button>
+							 </form>
+							</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/javascript/taskRegister.js" defer></script>
+</body>
+</html>

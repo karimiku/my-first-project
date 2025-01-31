@@ -1,0 +1,112 @@
+@charset "UTF-8";
+/* 全体のスタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* 背景のスタイル */
+body {
+    background: #45a049;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*　エラーメッセージ */
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 14px;
+    border: 1px solid #f5c6cb;
+}
+
+
+
+/* ログインコンテナ */
+.signup-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* ログインフォーム */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 見出し */
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* フォームグループ */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* ラベル */
+label {
+    font-size: 14px;
+    color: #555;
+}
+
+/* 入力フィールド */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+/* 入力フィールドのフォーカス時 */
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #45a049;
+    box-shadow: 0 0 5px rgba(78, 115, 223, 0.7);
+}
+
+/* ログインボタン */
+.submit-btn {
+    background-color: #45a049;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* ログインボタンのホバー時 */
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+/* ユーザー登録リンク */
+a {
+    color: #45a049;
+    text-decoration: none;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+a:hover {
+    text-decoration: underline;
+}

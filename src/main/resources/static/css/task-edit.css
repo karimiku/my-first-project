@@ -1,0 +1,84 @@
+@charset "UTF-8";
+/* タスク編集フォームのスタイル */
+.task-edit-form-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+	margin-top: 10px;
+}
+
+/* フォームの見出し */
+.task-edit-form-container h2 {
+    margin-bottom: 10px;
+    color: black;
+    text-align: center;
+}
+
+/* 入力フィールド */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.input-group textarea {
+    resize: none;
+    height: 100px;
+}
+
+/* ボタンを横並びにする */
+.button-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 左寄せと中央を実現 */
+    margin-top: 20px;
+}
+
+/* キャンセルボタン（左寄せ） */
+.cancel-button {
+    background-color: #ccc;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cancel-button:hover {
+    background-color: #999;
+}
+
+/* 保存ボタン（中央配置） */
+.save-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+	
+}
+
+.save-button:hover {
+    background-color: #45a049;
+}

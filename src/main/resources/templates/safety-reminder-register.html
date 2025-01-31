@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安全確認リマインダー - リマインダー登録</title>
+    <link rel="stylesheet" href="/css/common.css"> <!-- 共通CSS -->
+    <link rel="stylesheet" href="/css/safety-reminder-register.css"> 
+</head>
+<body>
+	
+	<div th:replace="common/header :: body"></div>
+	
+	
+    <div class="safety-reminder-form-container">
+        <h2>安全確認リマインダー - リマインダー登録</h2>
+		<!-- エラーメッセージ表示部分 -->
+		<div th:if="${errorReminder != null}" class="error-message">
+			<p th:text="${errorReminder}"></p>
+		</div>
+        <form th:action="@{/safety-reminder-register}" method="POST" th:object="${SafetyReminderForm}">
+            <div class="input-group">
+                <label for="groupId">グループを選択:</label>
+                <select id="groupId" th:field="*{groupId}" required>
+                    <option value="" disabled selected>選択してください</option>
+                    <option th:each="group : ${userGroups}" th:value="${group.id}" th:text="${group.name}"></option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="reminderName">リマインダー内容:</label>
+                <input type="text" id="reminderName" th:field="*{reminderName}" required placeholder="例: 鍵をかけたか確認する">
+            </div>
+            <button type="submit">登録</button>
+			<div class="button-right-container">
+				<a th:href="@{/safety-group-register}" class="button-link">戻る</a>
+			</div>
+        </form>
+    </div>
+</body>
+</html>

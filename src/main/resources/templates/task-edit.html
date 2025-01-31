@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タスク編集 - Goal Tracker</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/task-edit.css}">
+</head>
+<body>
+    <div th:replace="common/header :: body"></div>
+
+    <main>
+        <div class="task-edit-form-container">
+            <h2>タスク編集</h2>
+            <form th:action="@{/task/update}" method="post">
+                <input type="hidden" name="id" th:value="${task.id}" />
+
+                <div class="input-group">
+                    <label for="name">タスク名:</label>
+                    <input type="text" id="name" name="name" th:value="${task.name}" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="dueDateTime">期限:</label>
+                    <input type="datetime-local" id="dueDateTime" name="dueDateTime" th:value="${task.dueDateTime}" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="details">詳細:</label>
+                    <textarea id="details" name="details" th:text="${task.details}"></textarea>
+                </div>
+
+                <!-- ボタンを横並びに配置 -->
+                <div class="button-group">
+                    <a th:href="@{/menu}" class="cancel-button">キャンセル</a>
+                    <button type="submit" class="save-button">保存</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

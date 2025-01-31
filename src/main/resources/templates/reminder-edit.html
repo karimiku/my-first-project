@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安全確認リマインダー - リマインダー編集</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/reminder-edit.css"> 
+</head>
+<body>
+
+    <div th:replace="common/header :: body"></div>
+
+    <div class="reminder-edit-form-container">
+        <h2>安全確認リマインダー - リマインダー編集</h2>
+
+        <!-- エラーメッセージ表示 -->
+        <div th:if="${errorReminder != null}" class="error-message">
+            <p th:text="${errorReminder}"></p>
+        </div>
+
+        <form th:action="@{/reminder/update}" method="POST">
+            <!-- 既存のリマインダーIDを保持 -->
+            <input type="hidden" name="id" th:value="${reminder.id}" />
+
+            <!-- 既存のグループIDを保持 -->
+            <input type="hidden" name="oldGroupId" th:value="${reminder.group.id}" />
+
+            <div class="input-group">
+                <label for="groupId">グループを選択:</label>
+                <select id="groupId" name="groupId" required>
+                    <option value="" disabled>選択してください</option>
+                    <option th:each="group : ${userGroups}" 
+                            th:value="${group.id}" 
+                            th:text="${group.name}" 
+                            th:selected="${group.id == reminder.group.id}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="reminderName">リマインダー内容:</label>
+                <input type="text" id="reminderName" name="reminderName" th:value="${reminder.reminderName}" required>
+            </div>
+			<!-- ボタンを横並びに配置 -->
+			<div class="button-group">
+			    <a th:href="@{/menu}" class="cancel-button">キャンセル</a>
+			    <button type="submit" class="save-button">保存</button>
+			</div>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安全確認リマインダー - グループ登録</title>
+    <link rel="stylesheet" href="/css/common.css"> <!-- 共通CSS -->
+    <link rel="stylesheet" href="/css/safety-group-register.css"> <!-- 共通CSS -->
+</head>
+<body>
+	<div th:replace="common/header :: body"></div>
+    <div class="safety-group-form-container">
+        <h2>安全確認リマインダー - グループ登録</h2>
+
+		<!-- エラーメッセージ表示部分 -->
+		<div th:if="${errorGroup != null}" class="error-message">
+		    <p th:text="${errorGroup}"></p>
+		</div>
+        <form th:action="@{/safety-group-register}" method="POST" th:object="${SafetyReminderGroupForm}">
+            <div class="input-group">
+                <label for="name">グループ名:</label>
+                <input type="text" id="name" th:field="*{name}" required placeholder="例: 家を出る前の確認">
+            </div>
+			<div class="button-group">
+				<button type="submit" class ="button primary">登録</button>
+				<div class="button-right-container">
+					<a th:href="@{/safety-reminder-register}" class="button-link">次へ</a>
+				</div>
+			</div>
+        </form>
+    </div>
+</body>
+</html>
