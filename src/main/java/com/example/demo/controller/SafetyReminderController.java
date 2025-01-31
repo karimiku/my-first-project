@@ -129,7 +129,7 @@ public class SafetyReminderController {
 
         // 先に新しいリマインダーを登録し、その後古いリマインダーを削除
         reminderService.addReminder(reminderForm);
-        reminderService.deleteReminderById(oldReminderId);
+        reminderService.deleteReminderByIdEdit(oldReminderId);
 
         return "redirect:/menu";
     }
@@ -141,6 +141,17 @@ public class SafetyReminderController {
         return userInfoRepository.findByLoginId(loginId)
                 .map(userInfo -> userInfo.getId())
                 .orElse(null);
+    }
+    /**
+     * menu画面からリマインダーを削除
+     */
+    @PostMapping(UrlConst.REMINDER_DELETE)
+    public String deleteReminderFromMenu(@RequestParam("id") Long id) {
+        if (reminderService.deleteReminderByIdMenu(id)) {
+            return "redirect:/menu"; // メニュー画面へ戻る
+        } else {
+            return "redirect:/menu?error"; // エラーハンドリング（オプション）
+        }
     }
 }
 

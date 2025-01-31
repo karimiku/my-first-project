@@ -97,7 +97,32 @@ public class SafetyReminderService {
      * @return 削除成功なら true、存在しなければ false
      */
     @Transactional
-    public boolean deleteReminderById(Long id) {
+    public boolean deleteReminderByIdEdit(Long id) {
+        if (reminderRepository.existsById(id)) {
+            // 1. リマインダーを取得
+            SafetyReminder reminder = reminderRepository.findById(id)
+                    .orElseThrow(() -> new IllegalArgumentException("リマインダーが見つかりません: ID = " + id));
+
+            // 2. リマインダーを削除
+            reminderRepository.deleteById(id);
+
+            // 3. グループにまだリマインダーがあるか確認
+            Long groupId = reminder.getGroup().getId();
+            boolean hasReminders = reminderRepository.existsByGroupId(groupId);
+
+            // 4. もしリマインダーがなくなったらグループを削除
+            if (!hasReminders) {
+                groupRepository.deleteById(groupId);
+            }
+            
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    @Transactional
+    public boolean deleteReminderByIdMenu(Long id) {
         if (reminderRepository.existsById(id)) {
             // 1. リマインダーを取得
             SafetyReminder reminder = reminderRepository.findById(id)
